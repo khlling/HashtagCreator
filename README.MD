@@ -19,7 +19,7 @@ In the attached documents, find the most common occurring words, and the sentenc
 
 ## Installation
 
-    git clone
+    git clone https://github.com/khlling/HastagCreator.git
     cd HashtagCreator
     virtualenv .env && source .env/bin/activate && pip install -r requirements.txt
 
