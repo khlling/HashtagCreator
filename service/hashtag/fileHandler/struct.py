@@ -23,7 +23,7 @@ class Dataset:
 
         Args:
         token (str): The files content.
-        file_name (str): The file name.
+        file_name (str): The fileHandler name.
         sent (Model): The sentence it was found.
 
         """

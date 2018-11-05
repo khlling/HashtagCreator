@@ -13,23 +13,28 @@ class FileLoader:
         tika.initVM()
 
     def load(self, dataset):
-        """Loads in each file within the specified root_file_path
+        """Loads in each fileHandler within the specified root_file_path
 
         Returns:
             Sorted list of the count dictionary
 
         """
-        for file_name in os.listdir(self.root_file_path):
-            path = self.root_file_path + "/" + file_name
-            print('path: ', path)
-            content = self._extract_content(path)
-            # Only process further if there is content
-            if content:
-                self.nlp.load(content, file_name, dataset)
-        return sorted(dataset.count_dict.items(), key=lambda kv: kv[1], reverse=True)
+        try:
+            for file_name in os.listdir(self.root_file_path):
+                path = self.root_file_path + "/" + file_name
+                print('path: ', path)
+                content = self._extract_content(path)
+                # Only process further if there is content
+                if content:
+                    self.nlp.load(content, file_name, dataset)
+            return sorted(dataset.count_dict.items(), key=lambda kv: kv[1], reverse=True)
+        except FileNotFoundError:
+            raise FileNotFoundError
+
+
 
     def _extract_content(self, file_path):
-        """Uses Tika to parse and extract content from file.
+        """Uses Tika to parse and extract content from fileHandler.
 
         Returns:
             content
@@ -48,12 +53,12 @@ class NLP:
         self.nlp = spacy.load(model)
 
     def load(self, content, file_name, dataset):
-        """Loads contents of the file into NLP module. If you want to load content from another source
+        """Loads contents of the fileHandler into NLP module. If you want to load content from another source
         use this method
 
         Args:
         content (str): The files content.
-        file_name (str): The file name.
+        file_name (str): The fileHandler name.
         dataset (Model): The dataset that is being loaded.
 
         Returns:
@@ -68,7 +73,7 @@ class NLP:
 
         Args:
         sents (str): The sentences.
-        file_name (str): The file name.
+        file_name (str): The fileHandler name.
         dataset (Model): The dataset that is being loaded.
 
         """
@@ -85,7 +90,7 @@ class NLP:
 
         Args:
         content (str): The files content.
-        file_name (str): The file name.
+        file_name (str): The fileHandler name.
         dataset (Model): The dataset that is being loaded.
 
         """
@@ -100,7 +105,7 @@ class NLP:
         Args:
         dataset (Model): The dataset that is being loaded.
         token (str): The files content.
-        file_name (str): The file name.
+        file_name (str): The fileHandler name.
         sent (str): The sentence where the token was found.
 
         """
