@@ -9,7 +9,8 @@ def index(request):
         return HttpResponse("To use this service make POST request to: http://127.0.0.1:8000/hashtag/")
     elif request.method == 'POST':
         body = json.loads(request.body)
-        return JsonResponse(hashtag.generator().generate(body['filePath'], body['noResults']), safe=False)
+        return JsonResponse(hashtag.generator().generate(body['filePath'], body['noResults'], body['model']),
+                            safe=False)
 
     else:
         return HttpResponseNotFound('<h1>Page not found</h1>')

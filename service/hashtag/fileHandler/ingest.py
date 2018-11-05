@@ -15,6 +15,9 @@ class FileLoader:
     def load(self, dataset):
         """Loads in each fileHandler within the specified root_file_path
 
+        Args:
+        dataset (Dataset {object}): The file's dataset object
+
         Returns:
             Sorted list of the count dictionary
 
@@ -35,6 +38,9 @@ class FileLoader:
 
     def _extract_content(self, file_path):
         """Uses Tika to parse and extract content from fileHandler.
+
+        Args:
+        file_path (str): The file's path
 
         Returns:
             content
