@@ -67,9 +67,6 @@ class NLP:
         file_name (str): The fileHandler name.
         dataset (Model): The dataset that is being loaded.
 
-        Returns:
-        Sanitized token, if token does not meet rules then None is returned
-
         """
         doc = self.nlp(content)
         self._extract_tokens(doc.sents, file_name, dataset)
@@ -87,9 +84,10 @@ class NLP:
             # pass sentence to be tokenized
             tokens = self.nlp(sent.text)
             for token in tokens:
-                token = self._apply_rules(token)
-                if token:
-                    self._store_token(dataset, token, file_name, sent)
+                # token becomes word after rules have been applied
+                word = self._apply_rules(token)
+                if word:
+                    self._store_word(dataset, word, file_name, sent)
 
     def _apply_rules(self, token):
         """Apply rules to cleanup token
@@ -99,13 +97,16 @@ class NLP:
         file_name (str): The fileHandler name.
         dataset (Model): The dataset that is being loaded.
 
+        Returns:
+            Sanitized token, if token does not meet rules then None is returned
+
         """
         if not (token.is_stop or token.is_punct):
-            # Strip new line characters, remove punctation, stop words and lower case
+            # Strip new line characters, remove punctuation, stop words and lower case
             sanitized_token = token.text.rstrip().lower()
             return sanitized_token
 
-    def _store_token(self, dataset, token, file_name, sent):
+    def _store_word(self, dataset, token, file_name, sent):
         """Stores token
 
         Args:
