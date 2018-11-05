@@ -15,8 +15,10 @@ class Token:
 
 class Dataset:
 
-    _token_dict = {}
-    _count_dict = {}
+    def __init__(self):
+        # Create a datset model for results to be stored
+        self._token_dict = {}
+        self._count_dict = {}
 
     def store(self, word, file_name, sent):
         """Stores the passed in token, if it's already been seen then append to record. Otherwise create a new entry

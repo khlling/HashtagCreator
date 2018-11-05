@@ -115,6 +115,7 @@ As part of building a reusable solution that can be extended to other documents 
 - Results are not in table format but rather in JSON format so that it can be processed by other systems.
 - I have chosen not to store results as this service is meant to be used as a micro-service, albeit not that micro (see scaling section)
 - I toiled with applying lemmatisation. Spacy is capable of apply lemmatisation. Lemmatisation is the algorithmic process of determining the lemma of a word based on its intended meaning. This may help to improve results, at the moment 's and n't are returned as separate words instead of being part of John's or doesn't. These abbreviated words are still part of the sentence but they go towards a separate word count. However I decided not apply this as it might get confusing trying to find the corresponding word in the list of sentences once lemmatisation has occurred.
+- I have purposely filtered out stop word. In computing, stop words are words which are filtered out before or after processing of natural language data (text). "stop words" usually refers to the most common words. I have filtered these out based to improve results. 
 
 ## Constraints
 
