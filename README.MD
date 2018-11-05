@@ -84,7 +84,7 @@ Windows
 	]
 
 # Development
-Development was done a Mac so some commands may need to be adjusted. Also some parts of the solution might work straight away on other platforms. If you run into any problems raise an issue or contact me directly.
+Development was done on a Mac so some commands may need to be adjusted. Also some parts of the solution might work straight away on other platforms. If you run into any problems raise an issue or contact me directly.
 # Store venv
 
     pip3 freeze -l > requirements.txt 
