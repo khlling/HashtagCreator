@@ -138,4 +138,4 @@ Instead of handling a flat folder structure an improvement could be to index fol
 ### Scaling
 Although the application is reasonably quick for small numbers of files it does not scale well. For higher throughput of files and requests.
 
-I would ideally not put the Apache Tika and Spacy libraries in service application. Indeed the python library Apache Tika is a wrapper for a Java web server running Tika. Instead I would split them apart into their own micro-services with an orchestration layer to manage RESTful calls and load. Therefore the application could be scaled horizontally much more effectively. But I have done so that it's easier to run and test the application in development mode.
+I would ideally not put the Apache Tika and Spacy libraries in service application. Indeed the python library Apache Tika is a wrapper for a Java web server running Tika. Instead I would split them apart into their own micro-services with an orchestration layer/ MQ to manage RESTful calls and load. Therefore the application could be scaled horizontally much more effectively. I haven't done so in this case as it's easier to run and test the application in development mode.
