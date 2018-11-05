@@ -12,16 +12,27 @@ In the attached documents, find the most common occurring words, and the sentenc
 | philosophy    | x, y, z | I don't have time for **philosophy**<br>Surely this was a touch of fine **philosophy**; though no doubt he had never heard there was such a thing as that.<br>Still, her pay-as-you-go **philosophy** implied she didn't take money for granted. |
 
 
+## Requirements
+    
+- Python 3.7
+- Java 7+
+
+
 ## Technologies
 
  - Python 3.7
  - Spacy for NLP
+ - Tika for document parsing
+ 
+## Constraints
+
+ - This app uses Apache Tika for document parsing. Whilst the number of files that are supported is massive, it is not exhaustive.
 
 ## Installation
 
     git clone https://github.com/khlling/HastagCreator.git
     cd HashtagCreator
-    virtualenv .env && source .env/bin/activate && pip install -r requirements.txt
+    virtualenv .venv && source .venv/bin/activate && pip install -r requirements.txt
 
 # Run
 
@@ -29,7 +40,7 @@ In the attached documents, find the most common occurring words, and the sentenc
     
 # Store venv
 
-    pip freeze > requirements.txt
+    pip3 freeze -l > requirements.txt 
 
 # Structures
 
@@ -68,7 +79,21 @@ Structure 2: Locations of words
 ## Structure 3: Storing word counts
 
 |Count (int)| WORD (string)  |
-|--|--|
+|---|---|
 | 3 | "apple" |
 | 2 | "pear" |
 
+#Design Considerations
+
+#Improvements
+### Binary Tree
+One area of improvement that I would like to implement would be to make the count dictionary a binary tree.
+
+Changed a node, using pointer implementation it would have been O(1) and sorting would have be O(nlogn). but sorting right at the end would have been O(n).
+
+Not sorting at all would require a hashmap so again O(n). Accessing would be O(n) for hash but O(1) for tree.
+
+A Tree also has more options - like if you wanted to extend the solution to become an api it'd be self-contained?
+
+### Indexing Files
+Instead of handling a flat folder structure I would like to index folders and sub-folders to ingest a folder structure.

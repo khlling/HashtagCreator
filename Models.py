@@ -45,10 +45,11 @@ class Dataset:
         Returns:
         A flattened list of sentences the word was found in.
         """
-        sentence = ''
+        sentences = []
         for token in self._token_dict[word]:
-            sentence = sentence + token.sent + '\n'
-        return sentence
+            if token.sent not in sentences:
+                sentences.append(token.sent)
+        return sentences
 
     def get_documents(self, word):
         """Get the documents that a word was found in across dataset
@@ -60,9 +61,10 @@ class Dataset:
         A flattened list of document names the word was found in.
 
         """
-        documents = ''
+        documents = []
         for token in self._token_dict[word]:
-            documents = documents + token.file + '\n'
+            if token.file not in documents:
+                documents.append(token.file)
         return documents
 
     @property

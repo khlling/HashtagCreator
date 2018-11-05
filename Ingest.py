@@ -1,7 +1,8 @@
-import fnmatch
-import Models
 import os
 import spacy
+import sys
+import tika
+from tika import parser
 
 
 class FileLoader:
@@ -9,26 +10,36 @@ class FileLoader:
     def __init__(self, root_file_path, nlp):
         self.root_file_path = root_file_path
         self.nlp = nlp
+        tika.initVM()
 
-    def load(self):
+    def load(self, dataset):
         """Loads in each file within the specified root_file_path
 
         Returns:
-            The ingested dataset model
+            Sorted list of the count dictionary
 
         """
-        # create a datset model for results to be stored
-        dataset = Models.Dataset()
         for file_name in os.listdir(self.root_file_path):
-            print('Ingesting: ', file_name)
-            # Find all files matching .txt
-            if fnmatch.fnmatch(file_name, '*.txt'):
-                path = self.root_file_path + "/" + file_name
-                f = open(path, "r")
-                # Check that the file can be read
-                if f.mode == "r":
-                    self.nlp.load(f.read(), file_name, dataset)
-        return dataset
+            path = self.root_file_path + "/" + file_name
+            print('path: ', path)
+            content = self._extract_content(path)
+            # Only process further if there is content
+            if content:
+                self.nlp.load(content, file_name, dataset)
+        return sorted(dataset.count_dict.items(), key=lambda kv: kv[1], reverse=True)
+
+    def _extract_content(self, file_path):
+        """Uses Tika to parse and extract content from file.
+
+        Returns:
+            content
+
+        """
+        try:
+            parsed = parser.from_file(file_path)
+            return parsed['content']
+        except Exception as inst:
+            print("Unexpected error:", inst)
 
 
 class NLP:
@@ -52,7 +63,6 @@ class NLP:
         doc = self.nlp(content)
         self._extract_tokens(doc.sents, file_name, dataset)
 
-    # Extract and store tokens
     def _extract_tokens(self, sents, file_name, dataset):
         """Extracts tokens from sentences
 
