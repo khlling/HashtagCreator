@@ -48,13 +48,26 @@ Additional Step (download a Spacy model called: "en_core_web_sm"). List of avail
     
 ## Make Requests
 
+Linux
+
     Make a POST request to http://127.0.0.1:8000/hashtag/ (I suggest using Postman)
     with a JSON object in the body i.e.
     {
-        "filePath": "/Users/Kevin/PycharmProjects/Test/myTestDocs",
-        "noResults": 50,
+        "filePath": "/absolute/path/to/documents",
+        "noResults": 5,
         "model": "en_core_web_sm"
     }
+    
+Windows
+
+    Make a POST request to http://127.0.0.1:8000/hashtag/ (I suggest using Postman)
+    with a JSON object in the body i.e.
+    {
+        "filePath": "\\absolute\\path\\to\\documents",
+        "noResults": 5,
+        "model": "en_core_web_sm"
+    }
+    
 ## Results
     In the form of JSON
     [
