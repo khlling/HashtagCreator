@@ -69,18 +69,20 @@ Windows
     
 ## Results
     In the form of JSON
-    [
-        {
-        	"word": "pear",
-        	"documents": [ "doc1.txt", "doc2.txt"]
-        	"sentences": [ "I like pears", "He likes pears"]
-	    },
-	    {
-        	"word": "apple",
-        	"documents": [ "doc1.txt"]
-        	"sentences": [ "I like apples"]
-	    }
-	]
+    {
+        result:[
+                    {
+                        "word": "pear",
+                        "documents": [ "doc1.txt", "doc2.txt"]
+                        "sentences": [ "I like pears", "He likes pears"]
+                    },
+                    {
+                        "word": "apple",
+                        "documents": [ "doc1.txt"]
+                        "sentences": [ "I like apples"]
+                    }
+               ]          
+	}
 
 # Development
 Development was done on a Mac so some commands may need to be adjusted. Also some parts of the solution might work straight away on other platforms. If you run into any problems raise an issue or contact me directly.
