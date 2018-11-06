@@ -19,7 +19,7 @@
 *.rar
 #*.tar
 *.zip
-venv
+.venv
 
 # Logs and databases #
 ######################

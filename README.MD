@@ -35,7 +35,7 @@ Linux
 
 Windows
 
-    virtualenv .venv && source .venv\Scripts\activate && pip3 install -r requirements.txt
+    virtualenv .venv && .venv\Scripts\activate && pip3 install -r requirements.txt
 
 Additional Step (download a Spacy model called: "en_core_web_sm"). List of available models can be found here: https://spacy.io/models/
 
@@ -43,8 +43,7 @@ Additional Step (download a Spacy model called: "en_core_web_sm"). List of avail
 
 ## Start Server
 
-    cd HashtagCreator/service
-    python manage.py runserver 
+    python service/manage.py runserver 
     
 ## Make Requests
 
