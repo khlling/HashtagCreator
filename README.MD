@@ -67,6 +67,10 @@ Windows
         "model": "en_core_web_sm"
     }
     
+- filePath: absolute file path for the location all the documents you want ingest
+- noResults: the number of results you wan to get back from the service
+- model: the Spacy model you want to use for NLP processing
+    
 ## Results
     In the form of JSON
     {
